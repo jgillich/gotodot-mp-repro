@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4ymwtsfo4cdw"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_c0cka"]
+[ext_resource type="Texture2D" uid="uid://uoihbxqcqmeq" path="res://icon.png" id="2_74b25"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( "1_c0cka" )
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("../Players")
+auto_spawn = true
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 11)
+scale = Vector2(93.2813, 20.4219)
+z_index = -1
+texture = ExtResource( "2_74b25" )

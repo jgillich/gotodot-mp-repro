@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://kiq2hujbxyeu"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_00oe5"]
+[ext_resource type="Texture2D" uid="uid://uoihbxqcqmeq" path="res://icon.png" id="2_glsqj"]
+[ext_resource type="Script" path="res://player_sync_state.gd" id="3_yt2vj"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7iyyq"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource( "1_00oe5" )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource( "2_glsqj" )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(32, -32, 32, 32, -32, 32, -32, -32, 31, -32)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource( "SceneReplicationConfig_7iyyq" )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SyncState" type="Node" parent="."]
+script = ExtResource( "3_yt2vj" )
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="SyncState"]
+replication_config = SubResource( "SceneReplicationConfig_7iyyq" )
